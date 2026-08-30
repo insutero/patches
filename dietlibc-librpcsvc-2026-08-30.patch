@@ -1,0 +1,22 @@
+diff --git a/librpc/svc.c b/librpc/svc.c
+index ae1a3ab..9959b88 100644
+--- a/librpc/svc.c
++++ b/librpc/svc.c
+@@ -73,7 +73,7 @@ static struct svc_callout {
+ 	struct svc_callout *sc_next;
+ 	unsigned long sc_prog;
+ 	unsigned long sc_vers;
+-	void (*sc_dispatch) ();
++	void (*sc_dispatch) (struct svc_req *, SVCXPRT *); // Updated signature
+ } *svc_head;
+ 
+ static struct svc_callout *svc_find(unsigned long prog, unsigned long vers, struct svc_callout **prev);
+@@ -139,7 +139,7 @@ bool_t svc_register(xprt, prog, vers, dispatch, protocol)
+ SVCXPRT *xprt;
+ unsigned long prog;
+ unsigned long vers;
+-void (*dispatch) ();
++void (*dispatch) (struct svc_req *, SVCXPRT *), // Updated signature
+ rpcprot_t protocol;
+ {
+ 	struct svc_callout *prev;
