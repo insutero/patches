@@ -1,5 +1,5 @@
 diff --git a/librpc/svc.c b/librpc/svc.c
-index ae1a3ab..9959b88 100644
+index ae1a3ab..dec4c7d 100644
 --- a/librpc/svc.c
 +++ b/librpc/svc.c
 @@ -73,7 +73,7 @@ static struct svc_callout {
@@ -16,7 +16,7 @@ index ae1a3ab..9959b88 100644
  unsigned long prog;
  unsigned long vers;
 -void (*dispatch) ();
-+void (*dispatch) (struct svc_req *, SVCXPRT *), // Updated signature
++void (*dispatch) (struct svc_req *, SVCXPRT *); // Updated signature
  rpcprot_t protocol;
  {
  	struct svc_callout *prev;
