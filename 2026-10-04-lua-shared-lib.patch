@@ -15,6 +15,8 @@ Description:             2020-06-30 renodr:
                          MYLDFLAGS is empty by default so it does not break
                          BLFS build, but it may break a custom build with
                          tuning or hardening.
+                         2026-10-04 insutero:
+                         Remove LUA_COMPAT flags
 
 diff -Naurp lua-5.4.0.orig/Makefile lua-5.4.0/Makefile
 --- lua-5.4.0.orig/Makefile	2020-04-15 07:55:07.000000000 -0500
@@ -47,8 +49,8 @@ diff -Naurp lua-5.4.0.orig/src/Makefile lua-5.4.0/src/Makefile
  PLAT= guess
  
  CC= gcc -std=gnu99
--CFLAGS= -O2 -Wall -Wextra -DLUA_COMPAT_5_3 $(SYSCFLAGS) $(MYCFLAGS)
-+CFLAGS= -fPIC -O0 -Wall -Wextra -DLUA_COMPAT_5_3 -DLUA_COMPAT_5_2 -DLUA_COMPAT_5_1 $(SYSCFLAGS) $(MYCFLAGS)
+-CFLAGS= -O2 -Wall -Wextra $(SYSCFLAGS) $(MYCFLAGS)
++CFLAGS= -fPIC -O0 -Wall -Wextra $(SYSCFLAGS) $(MYCFLAGS)
  LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
  LIBS= -lm $(SYSLIBS) $(MYLIBS)
  
